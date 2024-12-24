@@ -12,10 +12,10 @@ namespace Prueba_Tecnica_Net.Controllers
     public class RetailerController : Controller
     {
         private IRetailerService RetailerService;
-        private IOptions<ApiRetailerOptions> Options;
+        private IOptions<ExternalApiOptions> Options;
 
         private readonly ILogger<RetailerController> Logger;
-        public RetailerController(IRetailerService retailerService, IOptions<ApiRetailerOptions> options, ILogger<RetailerController> logger) 
+        public RetailerController(IRetailerService retailerService, IOptions<ExternalApiOptions> options, ILogger<RetailerController> logger) 
         { 
             RetailerService = retailerService;
             Options = options;

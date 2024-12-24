@@ -9,8 +9,9 @@ using Domain.Entities;
 using Domain.EnumsResult;
 using Microsoft.EntityFrameworkCore;
 using Services.DapperContext;
+using Services.Repositories.Interfaces;
 
-namespace Services.Repositories.Interfaces
+namespace Prueba_Tecnica_Net.Repositories
 {
     public class RetailerRepository : IRetailerRepository
     {
@@ -80,7 +81,7 @@ namespace Services.Repositories.Interfaces
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw new Exception("Error saving retailers");
             }
@@ -102,9 +103,9 @@ namespace Services.Repositories.Interfaces
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                
+
             }
         }
 

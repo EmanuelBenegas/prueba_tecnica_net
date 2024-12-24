@@ -1,10 +1,11 @@
 
 using Prueba_Tecnica_Net.Mapping;
 using Services.Services.Interfaces;
-using Services.Services.Service;
 using Services.Repositories.Interfaces;
 using Prueba_Tecnica_Net.Options;
 using Services.DapperContext;
+using Prueba_Tecnica_Net.Services;
+using Prueba_Tecnica_Net.Repositories;
 
 namespace Prueba_Tecnica_Net
 {
@@ -25,8 +26,8 @@ namespace Prueba_Tecnica_Net
             builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
 
             builder.Services
-                  .AddOptions<ApiRetailerOptions>()
-                  .Bind(builder.Configuration.GetSection(ApiRetailerOptions.Key));
+                  .AddOptions<ExternalApiOptions>()
+                  .Bind(builder.Configuration.GetSection(ExternalApiOptions.Key));
 
             builder.Services.AddSingleton<AppDapperContext>();
 

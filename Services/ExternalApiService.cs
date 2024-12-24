@@ -8,7 +8,7 @@ using Domain.Entities;
 using Newtonsoft.Json;
 using Services.Services.Interfaces;
 
-namespace Services.Services.Service
+namespace Prueba_Tecnica_Net.Services
 {
     public class ExternalApiService : IExternalApiService
     {
@@ -21,7 +21,7 @@ namespace Services.Services.Service
                 var httpClient = new HttpClient();
                 var jsonResponse = await httpClient.GetStringAsync(url);
 
-                return string.IsNullOrEmpty(jsonResponse) ?  retailers : JsonConvert.DeserializeObject<List<Retailer>>(jsonResponse);
+                return string.IsNullOrEmpty(jsonResponse) ? retailers : JsonConvert.DeserializeObject<List<Retailer>>(jsonResponse);
             }
             catch (Exception ex)
             {

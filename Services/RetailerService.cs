@@ -4,7 +4,7 @@ using Domain.EnumsResult;
 using Services.Repositories.Interfaces;
 using Services.Services.Interfaces;
 
-namespace Services.Services.Service
+namespace Prueba_Tecnica_Net.Services
 {
     public class RetailerService : IRetailerService
     {
@@ -32,7 +32,7 @@ namespace Services.Services.Service
 
                 return ResultData.Content;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw;
             }
