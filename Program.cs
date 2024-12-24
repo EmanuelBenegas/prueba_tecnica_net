@@ -1,12 +1,10 @@
 
 using Prueba_Tecnica_Net.Mapping;
-using Services.Context;
-using Microsoft.EntityFrameworkCore;
 using Services.Services.Interfaces;
 using Services.Services.Service;
 using Services.Repositories.Interfaces;
 using Prueba_Tecnica_Net.Options;
-using Microsoft.Identity.Client;
+using Services.DapperContext;
 
 namespace Prueba_Tecnica_Net
 {
@@ -31,8 +29,7 @@ namespace Prueba_Tecnica_Net
                   .AddOptions<ApiRetailerOptions>()
                   .Bind(builder.Configuration.GetSection(ApiRetailerOptions.Key));
 
-            builder.Services.AddDbContext<AppDbContext>(
-                options => options.UseSqlite(builder.Configuration.GetConnectionString("DbConnection")));
+            builder.Services.AddSingleton<AppDapperContext>();
 
             builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
