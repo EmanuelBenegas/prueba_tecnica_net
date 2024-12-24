@@ -1,4 +1,13 @@
 
+using Prueba_Tecnica_Net.Mapping;
+using Services.Context;
+using Microsoft.EntityFrameworkCore;
+using Services.Services.Interfaces;
+using Services.Services.Service;
+using Services.Repositories.Interfaces;
+using Prueba_Tecnica_Net.Options;
+using Microsoft.Identity.Client;
+
 namespace Prueba_Tecnica_Net
 {
     public class Program
@@ -14,6 +23,19 @@ namespace Prueba_Tecnica_Net
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<IRetailerService, RetailerService>();
+            builder.Services.AddScoped<IRetailerRepository, RetailerRepository>();
+            builder.Services.AddScoped<IExternalApiRetailer, ExternalApiService>();
+
+            builder.Services
+                  .AddOptions<ApiRetailerOptions>()
+                  .Bind(builder.Configuration.GetSection(ApiRetailerOptions.Key));
+
+            builder.Services.AddDbContext<AppDbContext>(
+                options => options.UseSqlite(builder.Configuration.GetConnectionString("DbConnection")));
+
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,6 +49,7 @@ namespace Prueba_Tecnica_Net
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
 
             app.MapControllers();
 
