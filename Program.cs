@@ -22,7 +22,7 @@ namespace Prueba_Tecnica_Net
 
             builder.Services.AddScoped<IRetailerService, RetailerService>();
             builder.Services.AddScoped<IRetailerRepository, RetailerRepository>();
-            builder.Services.AddScoped<IExternalApi, ExternalApiService>();
+            builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
 
             builder.Services
                   .AddOptions<ApiRetailerOptions>()

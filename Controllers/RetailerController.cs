@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Domain.DTOs;
+using Domain.EnumsResult;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Prueba_Tecnica_Net.Options;
@@ -13,10 +14,13 @@ namespace Prueba_Tecnica_Net.Controllers
     {
         private IRetailerService RetailerService;
         private IOptions<ApiRetailerOptions> Options;
-        public RetailerController(IRetailerService retailerService, IOptions<ApiRetailerOptions> options) 
+
+        private readonly ILogger<RetailerController> Logger;
+        public RetailerController(IRetailerService retailerService, IOptions<ApiRetailerOptions> options, ILogger<RetailerController> logger) 
         { 
             RetailerService = retailerService;
             Options = options;
+            Logger = logger;
         }
 
         /// <summary>
@@ -37,6 +41,7 @@ namespace Prueba_Tecnica_Net.Controllers
             }
             catch (Exception ex) 
             {
+                Logger.LogError(ex.Message);
                 return Problem(ex.Message);
             }
             
@@ -65,6 +70,7 @@ namespace Prueba_Tecnica_Net.Controllers
             }
             catch (Exception ex)
             {
+                Logger.LogError(ex.Message);
                 return Problem(ex.Message);
             }
         }
@@ -78,11 +84,16 @@ namespace Prueba_Tecnica_Net.Controllers
         {
             try
             {
-                await RetailerService.ImportRetailers(Options.Value.AllRetailersPath);
-                return Created();
+                var result = await RetailerService.ImportRetailers(Options.Value.AllRetailersPath);
+
+                if(result == ResultData.EmptyContent)
+                    return NoContent();
+                else
+                    return Created();
             }
             catch (Exception ex) 
             {
+                Logger.LogError(ex.Message);
                 return Problem(ex.Message);
             }
 
@@ -104,6 +115,7 @@ namespace Prueba_Tecnica_Net.Controllers
             }
             catch (Exception ex) 
             {
+                Logger.LogError(ex.Message);
                 return Problem(ex.Message);
             }
 
