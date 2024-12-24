@@ -1,4 +1,5 @@
-﻿using Domain.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+using Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Prueba_Tecnica_Net.Options;
@@ -18,8 +19,13 @@ namespace Prueba_Tecnica_Net.Controllers
             Options = options;
         }
 
+        /// <summary>
+        /// Get One Retailer by filter Id, type integer
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("GetById")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById([Required]int id)
         {
             try
             {
@@ -36,6 +42,16 @@ namespace Prueba_Tecnica_Net.Controllers
             
         }
 
+        /// <summary>
+        /// Get retailers filtered by code, country and name
+        /// returns 200 if there is at least one result
+        /// returns 204 if there is no data
+        /// returns 500 if there is some kind of error
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="country"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet("Retailers")]
         public async Task<IActionResult> GetRetailers(string? code, string? country, string? name)
         {
@@ -53,22 +69,44 @@ namespace Prueba_Tecnica_Net.Controllers
             }
         }
 
-        [HttpGet("GetRetailersFromAPI")]
+        /// <summary>
+        /// Get retailers from external API and insert the result in Database
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("ImportRetailersFromAPI")]
         public async Task<IActionResult> InsertRetailersFromApi()
         {
-            var result = await RetailerService.GetAllRetailers(Options.Value.AllRetailersPath);
+            try
+            {
+                await RetailerService.ImportRetailers(Options.Value.AllRetailersPath);
+                return Created();
+            }
+            catch (Exception ex) 
+            {
+                return Problem(ex.Message);
+            }
 
-            return Ok();
+            
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("DeleteRetailers")]
         public async Task<IActionResult> DeleteAll()
         {
-            await RetailerService.DeleteAllAsync();
+            try
+            {
+                await RetailerService.DeleteAllAsync();
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex) 
+            {
+                return Problem(ex.Message);
+            }
+
         }
-
-        ///crear función para delete, try catch para errores por unique
     }
 }

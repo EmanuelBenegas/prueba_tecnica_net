@@ -17,13 +17,12 @@ namespace Prueba_Tecnica_Net
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IRetailerService, RetailerService>();
             builder.Services.AddScoped<IRetailerRepository, RetailerRepository>();
-            builder.Services.AddScoped<IExternalApiRetailer, ExternalApiService>();
+            builder.Services.AddScoped<IExternalApi, ExternalApiService>();
 
             builder.Services
                   .AddOptions<ApiRetailerOptions>()
