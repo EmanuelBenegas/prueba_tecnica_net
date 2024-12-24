@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Domain.DTOs;
 using Domain.EnumsResult;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
