@@ -1,0 +1,64 @@
+[
+  {
+    "ContainingType": "Prueba_Tecnica_Net.Controllers.RetailerController",
+    "Method": "DeleteAll",
+    "RelativePath": "Retailer/DeleteRetailers",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Prueba_Tecnica_Net.Controllers.RetailerController",
+    "Method": "GetById",
+    "RelativePath": "Retailer/GetById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Prueba_Tecnica_Net.Controllers.RetailerController",
+    "Method": "InsertRetailersFromApi",
+    "RelativePath": "Retailer/ImportRetailersFromAPI",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Prueba_Tecnica_Net.Controllers.RetailerController",
+    "Method": "GetRetailers",
+    "RelativePath": "Retailer/Retailers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "country",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
