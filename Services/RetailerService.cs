@@ -19,6 +19,11 @@ namespace Prueba_Tecnica_Net.Services
             ExternalApi = externalApi;
         }
 
+        /// <summary>
+        /// Get retailers data from an external api and then insert in database
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public async Task<ResultData> ImportRetailers(string url)
         {
             try
@@ -41,21 +46,43 @@ namespace Prueba_Tecnica_Net.Services
 
         public async Task<RetailerDto> GetRetailerById(int id)
         {
-            var retailer = await RetailerRepository.GetRetailerById(id);
+            try
+            {
+                var retailer = await RetailerRepository.GetRetailerById(id);
 
-            return Mapper.Map<RetailerDto>(retailer);
+                return Mapper.Map<RetailerDto>(retailer);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task DeleteAllAsync()
         {
-            await RetailerRepository.DeleteAllAsync();
+            try
+            {
+                await RetailerRepository.DeleteAllAsync();
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }            
         }
 
         public async Task<IEnumerable<RetailerDto>> GetRetailersAsync(string? code, string? country, string? name)
         {
-            var retailers = await RetailerRepository.GetRetailersAsync(code, country, name);
+            try
+            {
+                var retailers = await RetailerRepository.GetRetailersAsync(code, country, name);
 
-            return Mapper.Map<IEnumerable<RetailerDto>>(retailers);
+                return Mapper.Map<IEnumerable<RetailerDto>>(retailers);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+
         }
 
 

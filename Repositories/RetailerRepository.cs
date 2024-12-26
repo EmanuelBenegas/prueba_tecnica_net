@@ -22,6 +22,12 @@ namespace Prueba_Tecnica_Net.Repositories
             AppDbContext = appDbContext;
         }
 
+        /// <summary>
+        /// Get retailer filtered by primary key
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<Retailer?> GetRetailerById(int id)
         {
             try
@@ -38,10 +44,18 @@ namespace Prueba_Tecnica_Net.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al consultar los datos");
+                throw new Exception("Error retrieving the data");
             }
         }
 
+        /// <summary>
+        /// Get retailers filtered by code, name and country
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="country"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<IEnumerable<Retailer>> GetRetailersAsync(string? code, string? country, string? name)
         {
             try
@@ -61,10 +75,16 @@ namespace Prueba_Tecnica_Net.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al consultar los datos");
+                throw new Exception("Error retrieving the data");
             }
         }
 
+        /// <summary>
+        /// Add a list of retailers getted from an external api
+        /// </summary>
+        /// <param name="retailers"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task AddRetailers(IEnumerable<Retailer> retailers)
         {
             try
@@ -87,6 +107,11 @@ namespace Prueba_Tecnica_Net.Repositories
             }
         }
 
+        /// <summary>
+        /// Delete all the retailers in database
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task DeleteAllAsync()
         {
             try
@@ -105,7 +130,7 @@ namespace Prueba_Tecnica_Net.Repositories
             }
             catch (Exception ex)
             {
-
+                throw new Exception("Error deleting Retailers data");
             }
         }
 

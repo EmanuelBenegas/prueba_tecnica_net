@@ -100,7 +100,7 @@ namespace Prueba_Tecnica_Net.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Request created to delete all records for tests
         /// </summary>
         /// <returns></returns>
         [HttpDelete("DeleteRetailers")]
